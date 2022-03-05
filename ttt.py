@@ -27,54 +27,46 @@ def empty_index(board):
 		if board[i] != 'X' and board[i] != 'O':
 			index.append(i)
 		i += 1
-	return index #return une liste des index vides sur le board [1,'X',3,'O',5,etc...] ==> [0,2,4]
+	return index
   
 
 def minimax(newBoard, player):
-	availSpots = empty_index(newBoard)## on récupère une liste des index vides sur le board [1,'X',3,'O',5,etc...] ==> [0,2,4]
-	#print_board(newBoard)
-	#print (have_win('O', newBoard))
-	#print (have_win('X', newBoard)) #test
-	if have_win('O', newBoard): ## si on gagne, +10
-		return [0,10] #le zéro sert à rien c'est juste pour return une liste de 2 valeurs à chaque cas: 
-	if have_win('X', newBoard): ## si on perds, -10
+	availSpots = empty_index(newBoard)
+	if have_win('O', newBoard):
+		return [0,10] 
+	if have_win('X', newBoard):
 		return [0,-10]
 	if len(availSpots) == 0:
 		return [0,0] 
-	moves = [] #On crée un tableau qui va contenir des tableau de 2 valeurs (move) pour chaque index disponible: l'index en question et le score final)
+	moves = []
 	for i in range(0, len(availSpots)):
 		move = []
-		move.append(newBoard[availSpots[i]]) ## == le chiffre du board ou on se trouve actuellement dans la boucle 1-indexé
-		newBoard[availSpots[i]] = player ## on remplit le board avec le coup et on appelle la recursive sur ce nouveau board jusqu'à obtenir un état final et donc un résultat
-		if player == 'O': ## O = AI
+		move.append(newBoard[availSpots[i]]) 
+		newBoard[availSpots[i]] = player
+		if player == 'O':
 			result = minimax(newBoard, 'X')
 			move.append(result[1])
-		else: ## utilisateur
+		else:
 			result = minimax(newBoard, 'O')	
 			move.append(result[1])
-		newBoard[availSpots[i]] = move[0] ## on enlève notre coup pour pouvoir verifier a nouveau au prochain tour de boucle 
-		moves.append(move) ## on ajoute le tableau move [numero de la case, score] au tableau moves
-	#print(moves)	
-	if player == 'O': ## si player = AI, on veut le plus gros score
+		newBoard[availSpots[i]] = move[0] 
+		moves.append(move)
+	if player == 'O':
 		bestScore = -10000
 		for move in moves:
 			if move[1] > bestScore:
 				bestScore = move[1]
-				bestMove = move #bestMove contient donc [numéro de la case, score]
-	#			print (move)
-	else: ## si user on veut le plus petit
+				bestMove = move
+	else:
 		bestScore = 10000
 		for move in moves:
 			if move[1] < bestScore:
 				bestScore = move[1]
 				bestMove = move
-	#			print(move)
-	#print (bestMove)
 	return bestMove
 
 def AI_get_first_move():
 	x = randint(1,2)
-	#print (x)
 	if x == 1:
 		return True	
 	else:
@@ -101,7 +93,7 @@ def put_AI_move(board):
 	board[x - 1] = 'O'
 
 def tie(board):
-	if empty_index(board) == []: # = si il n'y a aucune case libre
+	if empty_index(board) == []:
 		return True
 
 input("\nBienvenue dans le TicTacToe\n\n|X| |X|\n| |O| |\n|X| |X|\n\nPressez Entrée pour tirer au sort le premier joueur\n")
