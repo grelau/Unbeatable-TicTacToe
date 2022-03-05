@@ -1,5 +1,5 @@
 # Minimax and TicTacToe
-This is a simple python script to play TicTacToe against an AI based on minimax algorithm which is a recursive/backtracking algorithm providing the optimal move.
+A python script to play TicTacToe against an AI based on a minimax algorithm which is a recursive/backtracking algorithm providing the optimal move.
 
 # How to test it
 
@@ -11,7 +11,7 @@ change directory to the cloned repo
 ```bash
 cd Unbeatable-TicTacToe
 ```
-run the script and follow instructions
+run the script and follow the instructions to play ! The script will end at the end of the game
 ```bash
 python3 ttt.py
 ```
