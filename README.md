@@ -1,5 +1,5 @@
 # Minimax and TicTacToe
-A python script to play TicTacToe against an AI based on a minimax algorithm which is a recursive/backtracking algorithm providing the optimal move.
+A simple python script to play TicTacToe against an AI based on a minimax algorithm which is a recursive/backtracking algorithm providing the optimal move.
 
 # How to test it
 
